@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative w-full h-lvh">
+      <div className="relative w-full h-svh">
         <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
         <Image
           src="/images/top.jpg"
