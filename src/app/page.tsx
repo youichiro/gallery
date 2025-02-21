@@ -10,14 +10,22 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative w-full h-screen">
+      <div className="relative w-full h-lvh">
         <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
         <Image
           src="/images/top.jpg"
           alt="top"
           priority
           fill
-          className="object-cover"
+          className="object-cover hidden sm:block"
+        />
+        <Image
+          src="/images/top_mobile.jpg"
+          alt="top"
+          quality={100}
+          priority
+          fill
+          className="object-cover sm:hidden"
         />
         <div className="absolute bottom-0 right-0 z-50 text-slate-200 font-bold p-2">
           {/* chevron-double-down icon */}
@@ -32,6 +40,7 @@ export default function Home() {
             <Image
               src={image}
               alt={image}
+              priority={false}
               fill
               className="object-cover"
             />
