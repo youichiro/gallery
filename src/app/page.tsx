@@ -2,10 +2,33 @@ import Image from "next/image"
 
 export default function Home() {
   const images = [
-    "/images/DSC07886.jpeg",
-    "/images/DSC09781-2.jpg",
-    "/images/DSCF9765.jpg",
-    "/images/IMG_8191.JPG",
+    "/images/gallery/DSC_2844.JPG",
+    "/images/gallery/DSC07886.jpeg",
+    "/images/gallery/DSC09781-2.jpg",
+    "/images/gallery/DSCF1248.JPG",
+    "/images/gallery/DSCF1703.jpg",
+    "/images/gallery/DSCF2681.JPG",
+    "/images/gallery/DSCF3442.JPG",
+    "/images/gallery/DSCF3642.jpg",
+    "/images/gallery/DSCF6505.JPG",
+    "/images/gallery/DSCF6513.JPG",
+    "/images/gallery/DSCF9765.jpg",
+    "/images/gallery/IMG_0731.jpg",
+    "/images/gallery/IMG_0794.JPG",
+    "/images/gallery/IMG_1015.JPG",
+    "/images/gallery/IMG_1696.jpg",
+    "/images/gallery/IMG_1964.JPG",
+    "/images/gallery/IMG_1967.JPG",
+    "/images/gallery/IMG_1994.JPG",
+    "/images/gallery/IMG_2025.JPG",
+    "/images/gallery/IMG_2046.JPG",
+    "/images/gallery/IMG_2363.JPG",
+    "/images/gallery/IMG_2364.JPG",
+    "/images/gallery/IMG_2472.jpg",
+    "/images/gallery/IMG_8182.JPG",
+    "/images/gallery/IMG_8191.JPG",
+    "/images/gallery/IMG_8787.JPG",
+    "/images/gallery/IMG_9616.JPG",
   ]
 
   return (
@@ -13,14 +36,14 @@ export default function Home() {
       <div className="relative w-full h-svh">
         <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
         <Image
-          src="/images/top.jpg"
+          src="/images/top/top.jpg"
           alt="top"
           priority
           fill
           className="object-cover hidden sm:block"
         />
         <Image
-          src="/images/top_mobile.jpg"
+          src="/images/top/top_mobile.jpg"
           alt="top"
           quality={100}
           priority
