@@ -33,7 +33,7 @@ export default function Home() {
         <Image
           src="/images/top/top.jpg"
           alt="top"
-          priority
+          priority={true}
           fill
           className="object-cover hidden sm:block"
         />
