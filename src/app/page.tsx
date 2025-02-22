@@ -81,7 +81,7 @@ export default function Home() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative w-screen h-screen">
+          <div className="relative w-dvw h-dvh">
             <Image
               src={selectedImage}
               alt="selected"
