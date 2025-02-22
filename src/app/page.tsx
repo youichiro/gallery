@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative w-full h-svh">
+      <div id="top" className="relative w-full h-svh">
         <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
         <Image
           src="/images/top/top.jpg"
@@ -45,14 +45,16 @@ export default function Home() {
           fill
           className="object-cover sm:hidden"
         />
-        <div className="absolute bottom-0 right-0 z-50 text-slate-200 font-bold p-2">
+        <div className="absolute bottom-0 right-0 z-50 p-2">
           {/* chevron-double-down icon */}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-          </svg>
+          <a href="#gallery" className="text-slate-200 font-bold hover:text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+            </svg>
+          </a>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 px-4 py-32 min-[440px]:grid-cols-2 lg:grid-cols-3">
+      <div id="gallery" className="grid grid-cols-1 gap-4 px-4 my-16 py-16 min-[440px]:grid-cols-2 lg:grid-cols-3">
         {images.map((image, index) => (
           <div key={index} className="relative w-full aspect-video">
             <Image
@@ -65,6 +67,9 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <footer className="text-slate-500 px-4 py-4 text-sm flex justify-end items-center">
+        <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p>
+      </footer>
     </div>
   );
 }
