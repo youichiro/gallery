@@ -92,7 +92,7 @@ export default function Home() {
               className="object-contain"
             />
             <button
-              className="absolute top-2 right-2 text-white text-xl"
+              className="absolute top-2 right-2 text-slate-200 text-2xl p-2 cursor-pointer hover:text-slate-300"
               onClick={() => setSelectedImage(null)}
             >
               ×
