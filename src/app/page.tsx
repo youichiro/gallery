@@ -81,10 +81,7 @@ export default function Home() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={() => setSelectedImage(null)}
         >
-          <div
-            className="relative w-full h-full"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="relative w-screen h-screen">
             <Image
               src={selectedImage}
               alt="selected"
