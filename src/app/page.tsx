@@ -99,7 +99,7 @@ export default function Home() {
         </div>
       )}
 
-      <footer className="text-slate-500 px-4 py-4 text-sm flex justify-end items-center">
+      <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
         <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p>
       </footer>
     </div>
