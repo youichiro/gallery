@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="ja" className="scroll-smooth">
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
