@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image"
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const images = [
     "/images/gallery/DSC_2844.JPG",
     "/images/gallery/DSC07886.jpeg",
@@ -54,19 +59,48 @@ export default function Home() {
           </a>
         </div>
       </div>
+
       <div id="gallery" className="grid grid-cols-1 gap-4 px-4 my-16 py-16 min-[440px]:grid-cols-2 lg:grid-cols-3">
         {images.map((image, index) => (
-          <div key={index} className="relative w-full aspect-video">
+          <div key={index} className="relative w-full aspect-video overflow-hidden group">
             <Image
               src={image}
               alt={image}
               priority={false}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 cursor-pointer"
+              onClick={() => setSelectedImage(image)}
             />
           </div>
         ))}
       </div>
+
+      {selectedImage && (
+        <div
+          id="selected-image"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative w-full h-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={selectedImage}
+              alt="selected"
+              fill
+              className="object-contain"
+            />
+            <button
+              className="absolute top-2 right-2 text-white text-xl"
+              onClick={() => setSelectedImage(null)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       <footer className="text-slate-500 px-4 py-4 text-sm flex justify-end items-center">
         <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p>
       </footer>
