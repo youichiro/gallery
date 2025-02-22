@@ -78,10 +78,10 @@ export default function Home() {
       {selectedImage && (
         <div
           id="selected-image"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 w-screen h-screen safe-area-inset"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative w-full h-full">
+          <div className="relative w-screen h-screen">
             <Image
               src={selectedImage}
               alt="selected"
@@ -90,7 +90,7 @@ export default function Home() {
               className="object-contain"
             />
             <button
-              className="absolute top-2 right-2 text-slate-200 text-2xl p-2 cursor-pointer hover:text-slate-300"
+              className="absolute top-0 right-0 text-slate-200 text-2xl p-4 cursor-pointer hover:text-slate-300"
               onClick={() => setSelectedImage(null)}
             >
               ×
