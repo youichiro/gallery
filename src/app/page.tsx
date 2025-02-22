@@ -88,6 +88,7 @@ export default function Home() {
             <Image
               src={selectedImage}
               alt="selected"
+              quality={100}
               fill
               className="object-contain"
             />
