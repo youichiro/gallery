@@ -100,7 +100,8 @@ export default function Home() {
       )}
 
       <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
-        <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p>
+        {/* <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p> */}
+        <p>&copy; youichiro</p>
       </footer>
     </div>
   );
