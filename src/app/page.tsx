@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState } from "react";
 import Top from "./components/Top";
+import ExpandedImage from "./components/ExpandedImage";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -52,31 +53,11 @@ export default function Home() {
         ))}
       </div>
 
+      {/* 選択中の画像があれば拡大表示する */}
       {selectedImage && (
-        <div
-          id="selected-image"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative w-dvw h-dvh">
-            <Image
-              src={selectedImage}
-              alt="selected"
-              quality={100}
-              fill
-              className="object-contain"
-            />
-            <button
-              className="absolute top-0 right-0 text-slate-200 text-2xl p-4 cursor-pointer hover:text-slate-300"
-              onClick={() => setSelectedImage(null)}
-            >
-              ×
-            </button>
-          </div>
-        </div>
+        <ExpandedImage image={selectedImage} onClose={() => setSelectedImage(null)} />
       )}
 
-      {/* フッター */}
       <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
         {/* <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p> */}
         <p>&copy; youichiro</p>
