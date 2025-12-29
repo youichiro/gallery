@@ -9,6 +9,7 @@ import { images2024 } from "./data/images2024";
 import { images2025 } from "./data/images2025";
 import { Tab } from "./types";
 import Tabs from "./components/Tabs";
+import ScrollToTabsButton from "./components/ScrollButton";
 
 export default function HomeWrapper() {
   return (
@@ -42,13 +43,14 @@ function Home() {
       <Top />
       <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
       <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
+      <ScrollToTabsButton />
 
       {/* 選択中の画像があれば拡大表示する */}
       {selectedImage && (
         <ExpandedImage image={selectedImage} onClose={() => setSelectedImage(null)} />
       )}
 
-      <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
+      <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-start items-center">
         <p><a href="https://note.com/youichiroz" target="_blank" className="hover:underline">&copy; youichiro</a></p>
       </footer>
     </div>
