@@ -33,6 +33,7 @@ export default function Home() {
 
   return (
     <div>
+      {/* トップ画面 */}
       <div id="top" className="relative w-full h-svh">
         <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
         <Image
@@ -60,6 +61,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ギャラリー */}
       <div id="gallery" className="grid grid-cols-1 gap-4 px-4 my-16 py-16 min-[440px]:grid-cols-2 lg:grid-cols-3">
         {images.map((image, index) => (
           <div key={index} className="relative w-full aspect-video overflow-hidden group">
@@ -99,6 +101,7 @@ export default function Home() {
         </div>
       )}
 
+      {/* フッター */}
       <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
         {/* <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p> */}
         <p>&copy; youichiro</p>
