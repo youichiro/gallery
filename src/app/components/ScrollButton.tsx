@@ -36,7 +36,7 @@ export default function ScrollToTabsButton() {
   return (
     <button
       onClick={scrollToTabs}
-      className="fixed bottom-8 right-8 bg-slate-400 hover:bg-slate-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+      className="fixed bottom-8 right-8 bg-slate-400/50 hover:bg-slate-500/70 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 backdrop-blur-sm"
       aria-label="タブまでスクロール"
     >
       <svg
