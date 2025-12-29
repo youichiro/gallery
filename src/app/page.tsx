@@ -1,107 +1,56 @@
 "use client";
 
-import Image from "next/image"
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import Top from "./components/Top";
+import ExpandedImage from "./components/ExpandedImage";
+import Gallery from "./components/Gallery";
+import { images2024 } from "./data/images2024";
+import { images2025 } from "./data/images2025";
+import { Tab } from "./types";
+import Tabs from "./components/Tabs";
 
-export default function Home() {
+export default function HomeWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Home />
+    </Suspense>
+  );
+}
+
+function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const images = [
-    "/images/gallery/DSC_2844.JPG",
-    "/images/gallery/DSC07886.jpeg",
-    "/images/gallery/DSC09781-2.jpg",
-    "/images/gallery/DSCF1248.JPG",
-    "/images/gallery/DSCF1703.jpg",
-    "/images/gallery/DSCF2681.JPG",
-    "/images/gallery/DSCF3442.JPG",
-    "/images/gallery/DSCF6505.JPG",
-    "/images/gallery/DSCF6513.JPG",
-    "/images/gallery/DSCF9765.jpg",
-    "/images/gallery/IMG_1015.JPG",
-    "/images/gallery/IMG_1964.JPG",
-    "/images/gallery/IMG_1967.JPG",
-    "/images/gallery/IMG_1994.JPG",
-    "/images/gallery/IMG_2025.JPG",
-    "/images/gallery/IMG_2046.JPG",
-    "/images/gallery/IMG_2363.JPG",
-    "/images/gallery/IMG_2364.JPG",
-    "/images/gallery/IMG_2472.jpg",
-    "/images/gallery/IMG_8191.JPG",
-    "/images/gallery/IMG_8787.JPG",
-    "/images/gallery/IMG_9616.JPG",
-  ]
+  // URLのクエリパラメータからタブを取得
+  const initialTab: Tab = searchParams.get("tab") === "2025" ? "2025" : "2024";
+  const [selectedTab, setSelectedTab] = useState<Tab>(initialTab);
+
+  // 表示する画像一覧
+  const images = selectedTab === "2024" ? images2024 : images2025;
+
+  const tabs: Tab[] = ["2024", "2025"];
+
+  // タブ変更時にURLを更新
+  const changeTab = (tab: Tab) => {
+    setSelectedTab(tab);
+    router.push(`?tab=${tab}`, { scroll: false });
+  };
 
   return (
     <div>
-      <div id="top" className="relative w-full h-svh">
-        <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
-        <Image
-          src="/images/top/top.jpg"
-          alt="top"
-          priority={true}
-          fill
-          className="object-cover hidden sm:block"
-        />
-        <Image
-          src="/images/top/top_mobile.jpg"
-          alt="top"
-          quality={100}
-          priority
-          fill
-          className="object-cover sm:hidden"
-        />
-        <div className="absolute bottom-0 right-0 z-50 p-2">
-          {/* chevron-double-down icon */}
-          <a href="#gallery" className="text-slate-200 font-bold hover:text-slate-300">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-            </svg>
-          </a>
-        </div>
-      </div>
+      <Top />
+      <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
+      <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
 
-      <div id="gallery" className="grid grid-cols-1 gap-4 px-4 my-16 py-16 min-[440px]:grid-cols-2 lg:grid-cols-3">
-        {images.map((image, index) => (
-          <div key={index} className="relative w-full aspect-video overflow-hidden group">
-            <Image
-              src={image}
-              alt={image}
-              priority={false}
-              fill
-              className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 cursor-pointer"
-              onClick={() => setSelectedImage(image)}
-            />
-          </div>
-        ))}
-      </div>
-
+      {/* 選択中の画像があれば拡大表示する */}
       {selectedImage && (
-        <div
-          id="selected-image"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative w-dvw h-dvh">
-            <Image
-              src={selectedImage}
-              alt="selected"
-              quality={100}
-              fill
-              className="object-contain"
-            />
-            <button
-              className="absolute top-0 right-0 text-slate-200 text-2xl p-4 cursor-pointer hover:text-slate-300"
-              onClick={() => setSelectedImage(null)}
-            >
-              ×
-            </button>
-          </div>
-        </div>
+        <ExpandedImage image={selectedImage} onClose={() => setSelectedImage(null)} />
       )}
 
       <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-end items-center">
-        {/* <p>&copy; <a href="https://github.com/youichiro" target="_blank" className="hover:underline">youichiro</a></p> */}
-        <p>&copy; youichiro</p>
+        <p><a href="https://note.com/youichiroz" target="_blank" className="hover:underline">&copy; youichiro</a></p>
       </footer>
     </div>
   );

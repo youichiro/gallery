@@ -1,0 +1,1 @@
+export type Tab = "2024" | "2025";
