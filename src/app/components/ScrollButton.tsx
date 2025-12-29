@@ -23,6 +23,9 @@ export default function ScrollToTabsButton() {
   }, []);
 
   const scrollToTabs = () => {
+    // URLにハッシュを追加
+    window.history.pushState(null, "", "#tabs");
+
     const tabsElement = document.getElementById("tabs");
     if (tabsElement) {
       tabsElement.scrollIntoView({ behavior: "smooth" });
