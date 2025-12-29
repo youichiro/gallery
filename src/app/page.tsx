@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image"
 import { useState } from "react";
 import Top from "./components/Top";
 import ExpandedImage from "./components/ExpandedImage";
+import Gallery from "./components/Gallery";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -36,23 +36,8 @@ export default function Home() {
   return (
     <div>
       <Top />
-
-      {/* ギャラリー */}
-      <div id="gallery" className="grid grid-cols-1 gap-4 px-4 my-16 py-16 min-[440px]:grid-cols-2 lg:grid-cols-3">
-        {images.map((image, index) => (
-          <div key={index} className="relative w-full aspect-video overflow-hidden group">
-            <Image
-              src={image}
-              alt={image}
-              priority={false}
-              fill
-              className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 cursor-pointer"
-              onClick={() => setSelectedImage(image)}
-            />
-          </div>
-        ))}
-      </div>
-
+      <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
+      
       {/* 選択中の画像があれば拡大表示する */}
       {selectedImage && (
         <ExpandedImage image={selectedImage} onClose={() => setSelectedImage(null)} />
