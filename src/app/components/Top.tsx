@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Top() {
   return (
     <div id="top" className="relative w-full h-svh">
-      <p className="p-4 text-slate-500 font-bold z-50 absolute select-none">youichiro&apos;s gallery</p>
+      <Link href="/" className="p-4 text-slate-500 font-bold z-50 absolute">youichiro&apos;s gallery</Link>
       <Image
         src="/images/top/top.jpg"
         alt="top"

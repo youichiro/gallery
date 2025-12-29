@@ -22,6 +22,7 @@ function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const tabs: Tab[] = ["2024", "2025"];
 
   // URLのクエリパラメータからタブを取得
   const initialTab: Tab = searchParams.get("tab") === "2025" ? "2025" : "2024";
@@ -29,8 +30,6 @@ function Home() {
 
   // 表示する画像一覧
   const images = selectedTab === "2024" ? images2024 : images2025;
-
-  const tabs: Tab[] = ["2024", "2025"];
 
   // タブ変更時にURLを更新
   const changeTab = (tab: Tab) => {
