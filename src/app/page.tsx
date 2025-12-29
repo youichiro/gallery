@@ -7,8 +7,8 @@ import ExpandedImage from "./components/ExpandedImage";
 import Gallery from "./components/Gallery";
 import { images2024 } from "./data/images2024";
 import { images2025 } from "./data/images2025";
-
-type Tab = "2024" | "2025";
+import { Tab } from "./types";
+import Tabs from "./components/Tabs";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -33,23 +33,7 @@ export default function Home() {
   return (
     <div>
       <Top />
-
-      <div className="flex gap-1 px-4 py-8 sm:py-16">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => changeTab(tab)}
-            className={`px-3 py-2 rounded-lg font-bold ${
-              selectedTab === tab
-                ? "underline text-slate-500"
-                : "text-slate-400"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
+      <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
       <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
 
       {/* 選択中の画像があれば拡大表示する */}
