@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Top from "./components/Top";
 import ExpandedImage from "./components/ExpandedImage";
@@ -10,7 +10,15 @@ import { images2025 } from "./data/images2025";
 import { Tab } from "./types";
 import Tabs from "./components/Tabs";
 
-export default function Home() {
+export default function HomeWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Home />
+    </Suspense>
+  );
+}
+
+function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
