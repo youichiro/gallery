@@ -10,7 +10,7 @@ export default function Gallery ({ images, onImageClick }: { images: string[], o
           <div
             key={index}
             className={`relative w-full overflow-hidden group ${
-              isVertical ? 'aspect-[2/3]' : 'aspect-[3/2]'
+              isVertical ? 'aspect-[2/3] lg:row-span-2' : 'aspect-[3/2]'
             }`}
           >
             <Image

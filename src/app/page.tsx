@@ -16,7 +16,7 @@ export default function Home() {
   const router = useRouter();
 
   // URLのクエリパラメータからタブを取得
-  const initialTab: Tab = searchParams.get("year") === "2025" ? "2025" : "2024";
+  const initialTab: Tab = searchParams.get("tab") === "2025" ? "2025" : "2024";
   const [selectedTab, setSelectedTab] = useState<Tab>(initialTab);
 
   // 表示する画像一覧
