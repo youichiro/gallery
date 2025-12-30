@@ -1,40 +1,48 @@
 export const images2025 = [
-  "/images/2025/vertical/IMG_0669.JPG",
   "/images/2025/vertical/IMG_2897.JPG",
   "/images/2025/landscape/IMG_3046.jpg",
   "/images/2025/landscape/IMG_0138.jpg",
   "/images/2025/landscape/IMG_0125.JPG",
   "/images/2025/landscape/IMG_0144.jpg",
+
   "/images/2025/landscape/IMG_0158.JPG",
+  "/images/2025/landscape/IMG_3994.jpg",
+  "/images/2025/vertical/IMG_0235.jpg",
   "/images/2025/landscape/IMG_0182.JPG",
   "/images/2025/landscape/IMG_0208.JPG",
-  "/images/2025/vertical/IMG_0235.jpg",
-  "/images/2025/landscape/IMG_0284.jpg",
-  "/images/2025/landscape/IMG_3994.jpg",
+
   "/images/2025/vertical/IMG_4184.JPG",
   "/images/2025/vertical/IMG_4188.JPG",
   "/images/2025/vertical/IMG_4407.JPG",
+
+  "/images/2025/landscape/IMG_0284.jpg",
   "/images/2025/landscape/IMG_0574.JPG",
   "/images/2025/landscape/P1021078.JPG",
   "/images/2025/landscape/P1021269.jpg",
   "/images/2025/landscape/P1021303.jpg",
   "/images/2025/landscape/IMG_5176.JPG",
-  "/images/2025/vertical/IMG_5168.JPG",
-  "/images/2025/landscape/IMG_0707.JPG",
+
+  "/images/2025/vertical/IMG_0669.JPG",
   "/images/2025/vertical/IMG_0657.JPG",
   "/images/2025/vertical/IMG_0655.jpg",
+
+  "/images/2025/landscape/IMG_0707.JPG",
   "/images/2025/landscape/IMG_0741.JPG",
+  "/images/2025/vertical/IMG_5168.JPG",
   "/images/2025/landscape/IMG_0807.jpg",
   "/images/2025/landscape/IMG_0820.jpg",
+
   "/images/2025/vertical/DSCF2014.JPG",
   "/images/2025/landscape/IMG_0947.JPG",
   "/images/2025/landscape/IMG_0873.JPG",
   "/images/2025/landscape/IMG_0882.JPG",
   "/images/2025/landscape/IMG_0883.JPG",
-  "/images/2025/landscape/IMG_1002.JPG",
+
   "/images/2025/vertical/IMG_6270.JPG",
-  "/images/2025/vertical/IMG_1069.JPG",
   "/images/2025/vertical/IMG_1105.JPG",
   "/images/2025/vertical/IMG_1115.JPG",
+
+  "/images/2025/landscape/IMG_1002.JPG",
   "/images/2025/landscape/IMG_6374.JPG",
+  // "/images/2025/vertical/IMG_1069.JPG",
 ];
