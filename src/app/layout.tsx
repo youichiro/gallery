@@ -7,8 +7,12 @@ export const metadata: Metadata = {
   title: "youichiro's gallery",
   description: "youichiro's gallery",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '256x256', type: 'image/png' },
+    ],
   },
 };
 
