@@ -20,6 +20,8 @@ export default function Gallery ({ images, onImageClick }: { images: string[], o
               fill
               className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 cursor-pointer"
               onClick={() => onImageClick(image)}
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2UwZTBlMCIvPjwvc3ZnPg=="
             />
           </div>
         );
