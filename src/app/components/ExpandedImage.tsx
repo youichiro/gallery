@@ -4,7 +4,7 @@ export default function ExpandedImage({ image, onClose }: { image: string, onClo
   return (
     <div
       id="selected-image"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
       onClick={onClose}
     >
       <div className="relative w-dvw h-dvh">
