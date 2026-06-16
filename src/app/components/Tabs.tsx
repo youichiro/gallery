@@ -7,7 +7,7 @@ export default function Tabs({ tabs, selected, onClick }: { tabs: Tab[]; selecte
         <button
           key={tab}
           onClick={() => onClick(tab)}
-          className={`px-3 py-2 rounded-lg font-bold ${
+          className={`px-3 py-2 rounded-lg font-bold cursor-pointer ${
             selected === tab
               ? "underline text-slate-500"
               : "text-slate-400"
