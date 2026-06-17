@@ -5,11 +5,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Top from "./components/Top";
 import ExpandedImage from "./components/ExpandedImage";
 import Gallery from "./components/Gallery";
-import { images2024 } from "./data/images2024";
-import { images2025 } from "./data/images2025";
-import { Tab } from "./types";
+import imagesData from "./data/images.json";
+import { GalleryImage, Tab } from "./types";
 import Tabs from "./components/Tabs";
 import ScrollToTabsButton from "./components/ScrollButton";
+
+const imagesByYear = imagesData as Record<string, GalleryImage[]>;
+
+// 年（タブ）は manifest から自動生成する。新しい年を先頭に。
+const tabs: Tab[] = Object.keys(imagesByYear).sort().reverse();
 
 export default function HomeWrapper() {
   return (
@@ -23,14 +27,14 @@ function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
-  const tabs: Tab[] = ["2025", "2024"];
 
-  // URLのクエリパラメータからタブを取得
-  const initialTab: Tab = searchParams.get("tab") === "2024" ? "2024" : "2025";
+  // URLのクエリパラメータからタブを取得（無効な値はデフォルト=最新年）
+  const tabParam = searchParams.get("tab");
+  const initialTab: Tab = tabParam && tabs.includes(tabParam) ? tabParam : tabs[0];
   const [selectedTab, setSelectedTab] = useState<Tab>(initialTab);
 
   // 表示する画像一覧
-  const images = selectedTab === "2025" ? images2025 : images2024;
+  const images = imagesByYear[selectedTab] ?? [];
 
   // タブ変更時にURLを更新
   const changeTab = (tab: Tab) => {
