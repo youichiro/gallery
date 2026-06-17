@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { imageUrl } from "../lib/imageUrl";
 
 export default function Gallery ({ images, onImageClick }: { images: string[], onImageClick: (image: string) => void }) {
   return (
@@ -14,7 +15,7 @@ export default function Gallery ({ images, onImageClick }: { images: string[], o
             }`}
           >
             <Image
-              src={image}
+              src={imageUrl(image)}
               alt={image}
               priority={false}
               fill

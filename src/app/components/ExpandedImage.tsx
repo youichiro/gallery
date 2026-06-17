@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { imageUrl } from "../lib/imageUrl";
 
 export default function ExpandedImage({ image, onClose }: { image: string, onClose: () => void }) {
   return (
@@ -9,7 +10,7 @@ export default function ExpandedImage({ image, onClose }: { image: string, onClo
     >
       <div className="relative w-dvw h-dvh">
         <Image
-          src={image}
+          src={imageUrl(image)}
           alt="selected"
           quality={100}
           fill
@@ -22,6 +23,6 @@ export default function ExpandedImage({ image, onClose }: { image: string, onClo
           ×
         </button>
       </div>
-    </div> 
+    </div>
   );
 }
