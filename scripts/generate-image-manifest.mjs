@@ -92,7 +92,14 @@ async function listFromR2() {
 
 async function main() {
   if (!hasR2) {
-    console.warn("[manifest] R2 creds not set; keeping existing images.json");
+    const missing = [
+      !base && "NEXT_PUBLIC_IMAGE_BASE_URL",
+      !r2.accountId && "R2_ACCOUNT_ID",
+      !r2.accessKeyId && "R2_ACCESS_KEY_ID",
+      !r2.secretAccessKey && "R2_SECRET_ACCESS_KEY",
+      !r2.bucket && "R2_BUCKET",
+    ].filter(Boolean);
+    console.warn(`[manifest] missing env: ${missing.join(", ")}; keeping existing images.json`);
     return;
   }
   console.log("[manifest] source: R2 (ListObjectsV2)");
