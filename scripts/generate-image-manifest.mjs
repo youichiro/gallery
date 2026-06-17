@@ -1,7 +1,6 @@
 // ギャラリーの画像一覧を自動生成する。
-// - R2 の認証情報があれば R2 を一覧（本番ビルド向け）
-// - なければローカルの public/images を走査（移行中・creds 未設定でも動く）
-// - どちらも無ければ既存の images.json を温存（デプロイを壊さない）
+// - R2 の認証情報があれば R2 を一覧して src/app/data/images.json を生成（prebuild で実行）
+// - 認証情報が無ければ既存の images.json を温存（デプロイを壊さない）
 //
 // 各画像の「向き」は実寸（EXIF回転込み）から、並びは EXIF 撮影日時から自動決定する。
 import "dotenv/config";
@@ -60,7 +59,7 @@ async function mapLimit(items, limit, fn) {
   return out;
 }
 
-// {key, dateMsFallback, getBuffer} のリストを返す
+// R2 を一覧し {key, fallbackMs, getBuffer} の配列を返す
 async function listFromR2() {
   const { S3Client, ListObjectsV2Command } = await import("@aws-sdk/client-s3");
   const s3 = new S3Client({
@@ -91,48 +90,16 @@ async function listFromR2() {
   return items;
 }
 
-async function listFromLocal() {
-  const root = path.join("public", "images");
-  const items = [];
-  async function walk(dir) {
-    let entries;
-    try {
-      entries = await fs.readdir(dir, { withFileTypes: true });
-    } catch {
-      return;
-    }
-    for (const e of entries) {
-      const full = path.join(dir, e.name);
-      if (e.isDirectory()) {
-        await walk(full);
-      } else if (IMAGE_EXT.test(e.name)) {
-        const key = full.split(path.sep).join("/").replace(/^public\//, ""); // images/2025/...
-        if (!YEAR_RE.test(key)) continue;
-        const stat = await fs.stat(full);
-        items.push({
-          key,
-          fallbackMs: stat.mtimeMs,
-          getBuffer: async () => fs.readFile(full),
-        });
-      }
-    }
-  }
-  await walk(root);
-  return items;
-}
-
 async function main() {
-  let items;
-  if (hasR2) {
-    console.log("[manifest] source: R2 (ListObjectsV2)");
-    items = await listFromR2();
-  } else {
-    console.log("[manifest] R2 creds not set -> scanning local public/images");
-    items = await listFromLocal();
+  if (!hasR2) {
+    console.warn("[manifest] R2 creds not set; keeping existing images.json");
+    return;
   }
+  console.log("[manifest] source: R2 (ListObjectsV2)");
+  const items = await listFromR2();
 
   if (items.length === 0) {
-    console.warn("[manifest] no images found; keeping existing images.json");
+    console.warn("[manifest] no images found in R2; keeping existing images.json");
     return;
   }
 
