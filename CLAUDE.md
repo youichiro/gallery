@@ -4,15 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 概要
 
-個人の写真ギャラリー（youichiro's gallery）。Next.js 15 App Router、React 19、TypeScript、Tailwind CSS v3 で構築。Vercel にデプロイし、画像は `public/` 配下の静的アセットとして配信する。バックエンドやデータベースはなく、画像一覧はハードコードした TypeScript の配列で管理する。コードのコメントや一部の UI ラベルは日本語。
+個人の写真ギャラリー（youichiro's gallery）。Next.js 16 App Router、React 19、TypeScript、Tailwind CSS v4 で構築。Vercel にデプロイする。画像は Cloudflare R2 に置き、`next/image` で最適化して配信する（リポジトリに画像は含めない）。バックエンドやデータベースはなく、画像一覧はビルド時に R2 を走査して自動生成する。コードのコメントや一部の UI ラベルは日本語。
 
 ## コマンド
 
 ```bash
-npm run dev     # ローカル開発サーバー（Turbopack）http://localhost:3000
-npm run build   # 本番ビルド
-npm run start   # 本番ビルドの配信
-npm run lint    # ESLint（next/core-web-vitals + next/typescript）
+npm run dev       # ローカル開発サーバー（Turbopack）http://localhost:3000
+npm run manifest  # R2 を走査して src/app/data/images.json を再生成
+npm run build     # 本番ビルド（prebuild で manifest を自動再生成）
+npm run start     # 本番ビルドの配信
+npm run lint      # ESLint（next/core-web-vitals + next/typescript）
 ```
 
 テストフレームワークは設定されていない。
@@ -27,19 +28,22 @@ npm run lint    # ESLint（next/core-web-vitals + next/typescript）
 - `ExpandedImage` — 全画面のライトボックス（モーダル）。`page.tsx` の `selectedImage` ステートで制御する。
 - `ScrollButton` — 300px スクロールすると現れる、タブまで戻るボタン。
 
-ステートは `page.tsx` が保持する。`selectedTab`（表示中の年）と `selectedImage`（ライトボックス）の 2 つ。選択中のタブは `router.push` で URL のクエリパラメータ `?tab=2024|2025` に同期され、共有・ブックマーク可能になっている。読み込み時には同じパラメータから `initialTab` を復元する。
+ステートは `page.tsx` が保持する。`selectedTab`（表示中の年）と `selectedImage`（ライトボックス）の 2 つ。選択中のタブは `router.push` で URL のクエリパラメータ `?tab={年}` に同期され、共有・ブックマーク可能になっている。読み込み時には同じパラメータから `initialTab`（無効な値なら最新年）を復元する。
 
-### 画像データとレイアウトの規約
+### 画像データとレイアウト
 
-各年の写真は `src/app/data/images{年}.ts`（例: `images2025.ts`）に、public パスの順序付き `string[]` として定義する。ファイルの実体は `public/images/{年}/{landscape|vertical}/` 配下に置く。
+画像は Cloudflare R2 の `images/{年}/...`（ヒーロー画像は `images/top/`）に置く。画像一覧は手で書かず、`scripts/generate-image-manifest.mjs` がビルド時（`prebuild`）に R2 を走査して `src/app/data/images.json` を生成する。
 
-画像の向きはメタデータではなく**パス文字列から判定**する。`Gallery.tsx` で `image.includes("vertical")` により、タイルを縦長（`aspect-[2/3] row-span-2`）にするか横長（`aspect-[3/2]`）にするかを決める。したがって写真は、グリッドのレイアウトを正しくするために `landscape/` か `vertical/` の正しい名前のサブディレクトリに置く必要がある。配列の順序が表示順になる。
+- **配信元**: `src/app/lib/imageUrl.ts` が `NEXT_PUBLIC_IMAGE_BASE_URL`（R2 の公開 URL）を前置する。`next.config.ts` の `images.remotePatterns` も同じ URL から導出。
+- **向き**: 実寸（EXIF の回転を考慮）から自動判定。`Gallery.tsx` は manifest の `vertical` フラグで縦長（`aspect-[2/3] row-span-2`）/横長（`aspect-[3/2]`）を切り替える（フォルダ名やパス文字列には依存しない）。
+- **並び**: EXIF の撮影日時（古い順）。
+- **年タブ**: `images/{年}/` の prefix から自動生成。
 
-### 新しい年を追加する
+`src/app/data/images.json` はコミットされており、R2 認証情報が無い環境では再生成せずこれをそのまま使う（ビルドは壊れない）。
 
-最も頻度の高い変更で、複数のファイルを連動して修正する必要がある。
+### 新しい写真・年を追加する
 
-1. `public/images/{年}/{landscape,vertical}/` 配下に画像ファイルを追加する。
-2. `src/app/data/images{年}.ts` を作成し、`images{年}`（順序付きのパス配列）をエクスポートする。
-3. `src/app/types.ts` の `Tab` ユニオン型に年を追加する。
-4. `src/app/page.tsx` で、`tabs` 配列に追加し、`images` のセレクタを拡張し、`initialTab` のパース処理を更新する（現状は `"2025"` をデフォルトにハードコードし、`"2024"` のみを特別扱いしている）。
+1. Cloudflare R2 の `images/{年}/` に画像をアップロードする（`landscape`/`vertical` の振り分けは不要。向き・並びは自動）。
+2. Vercel で再デプロイする（Deployments → Redeploy、または Deploy Hook）。`prebuild` が R2 を再走査して `images.json` を更新し、新しい写真・年が反映される。
+
+コードの編集は不要。ビルド時に R2 を一覧するため、Vercel に `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` / `R2_BUCKET` と `NEXT_PUBLIC_IMAGE_BASE_URL` が設定されている必要がある。
