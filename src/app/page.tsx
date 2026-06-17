@@ -5,10 +5,12 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Top from "./components/Top";
 import ExpandedImage from "./components/ExpandedImage";
 import Gallery from "./components/Gallery";
-import imagesByYear from "./data/images.json";
+import imagesData from "./data/images.json";
 import { GalleryImage, Tab } from "./types";
 import Tabs from "./components/Tabs";
 import ScrollToTabsButton from "./components/ScrollButton";
+
+const imagesByYear = imagesData as Record<string, GalleryImage[]>;
 
 // 年（タブ）は manifest から自動生成する。新しい年を先頭に。
 const tabs: Tab[] = Object.keys(imagesByYear).sort().reverse();
@@ -32,7 +34,7 @@ function Home() {
   const [selectedTab, setSelectedTab] = useState<Tab>(initialTab);
 
   // 表示する画像一覧
-  const images = (imagesByYear[selectedTab as keyof typeof imagesByYear] ?? []) as GalleryImage[];
+  const images = imagesByYear[selectedTab] ?? [];
 
   // タブ変更時にURLを更新
   const changeTab = (tab: Tab) => {

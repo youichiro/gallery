@@ -81,6 +81,7 @@ async function listFromR2() {
         fallbackMs: o.LastModified ? new Date(o.LastModified).getTime() : 0,
         getBuffer: async () => {
           const r = await fetch(`${base}/${o.Key}`, { headers: { Range: `bytes=0-${RANGE_BYTES - 1}` } });
+          if (!r.ok) throw new Error(`HTTP ${r.status} fetching ${o.Key}`);
           return Buffer.from(await r.arrayBuffer());
         },
       });
@@ -107,9 +108,10 @@ async function listFromLocal() {
       } else if (IMAGE_EXT.test(e.name)) {
         const key = full.split(path.sep).join("/").replace(/^public\//, ""); // images/2025/...
         if (!YEAR_RE.test(key)) continue;
+        const stat = await fs.stat(full);
         items.push({
           key,
-          fallbackMs: 0,
+          fallbackMs: stat.mtimeMs,
           getBuffer: async () => fs.readFile(full),
         });
       }
