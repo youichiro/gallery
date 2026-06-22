@@ -24,7 +24,11 @@ export default function Home() {
         sizes="100vw"
         className="object-cover sm:hidden"
       />
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-10 px-6 text-center">
+        <div className="text-white drop-shadow-lg">
+          <h1 className="text-4xl font-bold tracking-wide sm:text-6xl">youichiro</h1>
+          <p className="mt-2 text-sm font-light tracking-[0.3em] text-white/70 sm:text-base">Software Engineer</p>
+        </div>
         <Link
           href="/gallery"
           className="rounded-full border border-white/70 bg-black/20 px-10 py-3 text-lg font-bold text-white backdrop-blur-sm transition hover:bg-black/40"
