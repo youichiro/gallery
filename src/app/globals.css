@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-/* iPhone Safari でステータスバー裏などに残る白い余白を、画像上部の空の色で塗って目立たなくする。
-   ギャラリー本体は gallery/page.tsx 側で bg-white を当てて従来どおり白背景にする。 */
-html {
-  background-color: #55c1fd;
-}
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
