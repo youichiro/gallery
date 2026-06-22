@@ -48,7 +48,7 @@ function GalleryPage() {
           position: fixed の要素はここに入れない（祖先に transform があると
           fixed が viewport ではなくその要素基準になり、ライトボックス等の
           位置がずれてタップしても見えなくなる）。 */}
-      <div className="page-enter">
+      <div className="page-enter bg-white">
         <Top />
         <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
         <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
