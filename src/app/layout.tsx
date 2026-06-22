@@ -20,6 +20,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  // iPhone Safari のステータスバー等を画像上部の空の色に合わせ、白い余白を目立たなくする
+  themeColor: '#55c1fd',
 }
 
 export default function RootLayout({
