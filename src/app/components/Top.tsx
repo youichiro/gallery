@@ -6,6 +6,7 @@ export default function Top() {
   return (
     <div id="top" className="relative w-full h-svh">
       <Link href="/gallery" className="p-4 text-slate-500 font-bold z-50 absolute">youichiro&apos;s gallery</Link>
+      <Link href="/" className="p-4 text-slate-500 font-bold z-50 absolute top-0 right-0 hover:text-slate-400">Top</Link>
       <Image
         src={imageUrl("/gallery/images/top/top.jpg")}
         alt="top"
