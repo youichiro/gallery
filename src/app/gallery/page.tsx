@@ -15,15 +15,15 @@ const imagesByYear = imagesData as Record<string, GalleryImage[]>;
 // 年（タブ）は manifest から自動生成する。新しい年を先頭に。
 const tabs: Tab[] = Object.keys(imagesByYear).sort().reverse();
 
-export default function HomeWrapper() {
+export default function GalleryPageWrapper() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Home />
+      <GalleryPage />
     </Suspense>
   );
 }
 
-function Home() {
+function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -55,7 +55,7 @@ function Home() {
       )}
 
       <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-start items-center">
-        <p><a href="https://note.com/youichiroz" target="_blank" className="hover:underline">&copy; youichiro</a></p>
+        <p><a href="https://note.com/youichiroz" target="_blank" rel="noopener noreferrer" className="hover:underline">&copy; youichiro</a></p>
       </footer>
     </div>
   );

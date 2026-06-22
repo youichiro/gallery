@@ -12,17 +12,17 @@ export default function Top() {
       </div>
       <Image
         src={imageUrl("/gallery/images/top/top.jpg")}
-        alt="top"
-        priority={true}
+        alt=""
         fill
+        sizes="100vw"
         className="object-cover hidden sm:block"
       />
       <Image
         src={imageUrl("/gallery/images/top/top_mobile.jpg")}
-        alt="top"
+        alt=""
         quality={100}
-        priority
         fill
+        sizes="100vw"
         className="object-cover sm:hidden"
       />
       <div className="absolute bottom-0 right-0 z-50 p-2">

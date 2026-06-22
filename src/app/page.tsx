@@ -9,17 +9,15 @@ export default function Home() {
     <div className="relative h-svh w-full">
       <Image
         src={imageUrl("/top/images/top.jpg")}
-        alt="top"
-        priority
+        alt=""
         fill
         sizes="100vw"
         className="object-cover hidden sm:block"
       />
       <Image
         src={imageUrl("/top/images/top_mobile.jpg")}
-        alt="top"
+        alt=""
         quality={100}
-        priority
         fill
         sizes="100vw"
         className="object-cover sm:hidden"
