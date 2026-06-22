@@ -43,7 +43,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="page-enter">
       <Top />
       <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
       <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />

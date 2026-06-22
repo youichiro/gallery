@@ -3,3 +3,20 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ルート遷移時のフェードイン。gallery ページのマウント時に一度だけ走る
+   （年タブ切替は再レンダリングのみで再マウントされないため再生されない）。 */
+.page-enter {
+  animation: pageEnter 0.45s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
