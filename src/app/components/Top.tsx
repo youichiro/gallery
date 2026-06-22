@@ -5,20 +5,24 @@ import { imageUrl } from "../lib/imageUrl";
 export default function Top() {
   return (
     <div id="top" className="relative w-full h-svh">
-      <Link href="/" className="p-4 text-slate-500 font-bold z-50 absolute">youichiro&apos;s gallery</Link>
+      <div className="z-50 absolute flex items-center text-slate-500 font-bold p-4 gap-2">
+        <Link href="/" className="hover:text-slate-400">youichiro</Link>
+        <p>/</p>
+        <Link href="/gallery" className="hover:text-slate-400">gallery</Link>
+      </div>
       <Image
-        src={imageUrl("/images/top/top.jpg")}
-        alt="top"
-        priority={true}
+        src={imageUrl("/gallery/images/top/top.jpg")}
+        alt=""
         fill
+        sizes="100vw"
         className="object-cover hidden sm:block"
       />
       <Image
-        src={imageUrl("/images/top/top_mobile.jpg")}
-        alt="top"
+        src={imageUrl("/gallery/images/top/top_mobile.jpg")}
+        alt=""
         quality={100}
-        priority
         fill
+        sizes="100vw"
         className="object-cover sm:hidden"
       />
       <div className="absolute bottom-0 right-0 z-50 p-2">

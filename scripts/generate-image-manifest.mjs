@@ -11,7 +11,7 @@ import exifr from "exifr";
 
 const OUT = path.join("src", "app", "data", "images.json");
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif)$/i;
-const YEAR_RE = /^images\/(\d{4})\//; // images/2025/... の 4桁を年として扱う（images/top/ は対象外）
+const YEAR_RE = /^gallery\/images\/(\d{4})\//; // gallery/images/2025/... の 4桁を年として扱う（gallery/images/top/ は対象外）
 const RANGE_BYTES = 512 * 1024;
 const CONCURRENCY = 8;
 
@@ -71,7 +71,7 @@ async function listFromR2() {
   let ContinuationToken;
   do {
     const res = await s3.send(
-      new ListObjectsV2Command({ Bucket: r2.bucket, Prefix: "images/", ContinuationToken }),
+      new ListObjectsV2Command({ Bucket: r2.bucket, Prefix: "gallery/images/", ContinuationToken }),
     );
     for (const o of res.Contents ?? []) {
       if (!YEAR_RE.test(o.Key) || !IMAGE_EXT.test(o.Key)) continue;
