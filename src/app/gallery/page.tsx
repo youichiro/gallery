@@ -43,20 +43,26 @@ function GalleryPage() {
   };
 
   return (
-    <div className="page-enter">
-      <Top />
-      <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
-      <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
-      <ScrollToTabsButton />
+    <>
+      {/* ページ本体（フェードイン）。.page-enter は transform を持つため、
+          position: fixed の要素はここに入れない（祖先に transform があると
+          fixed が viewport ではなくその要素基準になり、ライトボックス等の
+          位置がずれてタップしても見えなくなる）。 */}
+      <div className="page-enter">
+        <Top />
+        <Tabs tabs={tabs} selected={selectedTab} onClick={(tab) => changeTab(tab)} />
+        <Gallery images={images} onImageClick={(image) => setSelectedImage(image)} />
 
-      {/* 選択中の画像があれば拡大表示する */}
+        <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-start items-center">
+          <p><a href="https://note.com/youichiroz" target="_blank" rel="noopener noreferrer" className="hover:underline">&copy; youichiro</a></p>
+        </footer>
+      </div>
+
+      {/* fixed 要素は page-enter（transform）の外に置く */}
+      <ScrollToTabsButton />
       {selectedImage && (
         <ExpandedImage image={selectedImage} onClose={() => setSelectedImage(null)} />
       )}
-
-      <footer className="text-slate-500 px-4 pb-8 text-sm flex justify-start items-center">
-        <p><a href="https://note.com/youichiroz" target="_blank" rel="noopener noreferrer" className="hover:underline">&copy; youichiro</a></p>
-      </footer>
-    </div>
+    </>
   );
 }

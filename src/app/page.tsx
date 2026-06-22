@@ -6,7 +6,7 @@ import { imageUrl } from "./lib/imageUrl";
 // 画像は Top コンポーネント同様 sm: ブレークポイントで PC / モバイルを出し分ける。
 export default function Home() {
   return (
-    <div className="relative h-svh w-full">
+    <div className="relative h-lvh w-full">
       <Image
         src={imageUrl("/top/images/top.jpg")}
         alt=""
