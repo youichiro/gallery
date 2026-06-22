@@ -26,8 +26,8 @@ export default function Home() {
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-10 px-6 text-center">
         <div className="text-white drop-shadow-lg">
-          <h1 className="text-4xl font-bold tracking-wide sm:text-6xl">youichiro</h1>
-          <p className="mt-2 text-sm font-light tracking-[0.3em] text-white/70 sm:text-base">Software Engineer</p>
+          <h1 className="text-3xl font-bold tracking-wide sm:text-5xl">youichiro</h1>
+          <p className="mt-2 text-xs font-light tracking-[0.3em] text-white/70 sm:text-sm">Software Engineer</p>
         </div>
         <Link
           href="/gallery"
