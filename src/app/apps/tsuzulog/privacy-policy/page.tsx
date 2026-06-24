@@ -6,12 +6,11 @@ export const metadata: Metadata = {
   description: "つづログのプライバシーポリシー",
 };
 
-// つづログ のプライバシーポリシー。
-// 元データ: github.com/youichiro/apps (tsuzulog/privacy-policy/index.html) のダーク配色を再現。
+// つづログ のプライバシーポリシー。紹介ページ（/apps/tsuzulog）に合わせた白ベースの配色。
 export default function TsuzulogPrivacyPolicyPage() {
   return (
     <main
-      className="min-h-lvh w-full bg-[#1a1a1a] px-5 pt-6 pb-16 leading-[1.8] text-[#e6e6e6]"
+      className="min-h-lvh w-full bg-white px-5 pt-6 pb-16 leading-[1.8] text-slate-700"
       style={{
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif',
@@ -20,19 +19,19 @@ export default function TsuzulogPrivacyPolicyPage() {
       <div className="mx-auto max-w-[720px]">
         <Link
           href="/apps/tsuzulog"
-          className="text-sm text-[#4ea1ff] transition hover:opacity-80"
+          className="text-sm text-blue-600 transition hover:opacity-80"
         >
           ← つづログへ戻る
         </Link>
 
-        <h1 className="mt-6 text-[1.6rem] font-bold">つづログ プライバシーポリシー</h1>
-        <p className="mt-1 text-[0.9rem] text-[#888]">最終更新日：2026年6月16日</p>
+        <h1 className="mt-6 text-[1.6rem] font-bold text-slate-900">つづログ プライバシーポリシー</h1>
+        <p className="mt-1 text-[0.9rem] text-slate-500">最終更新日：2026年6月16日</p>
 
         <p className="mt-6">
           「つづログ」（以下「本アプリ」）は、利用者の個人情報を以下のとおり取り扱います。本アプリを利用することで、本ポリシーに同意したものとみなされます。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           1. 取得する情報
         </h2>
         <ul className="mt-2 list-disc pl-[1.2em]">
@@ -47,7 +46,7 @@ export default function TsuzulogPrivacyPolicyPage() {
           広告識別子の取得や、利用者を横断的に追跡（トラッキング）するための情報収集は行いません。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           2. 利用目的
         </h2>
         <ul className="mt-2 list-disc pl-[1.2em]">
@@ -58,7 +57,7 @@ export default function TsuzulogPrivacyPolicyPage() {
           取得した情報を広告配信や第三者へのデータ販売に利用することはありません。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           3. 外部サービス・データの保存先
         </h2>
         <ul className="mt-2 list-disc pl-[1.2em]">
@@ -73,47 +72,47 @@ export default function TsuzulogPrivacyPolicyPage() {
           通信はすべて HTTPS で暗号化され、データへのアクセスは行レベルセキュリティ（RLS）等により制御されます。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           4. 共有機能について
         </h2>
         <p className="mt-2">
           シートの共有は招待制の非公開共有です。共有された内容は、その招待を受けたメンバーにのみ表示されます。一般公開や不特定多数への公開は行いません。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           5. データの削除
         </h2>
         <p className="mt-2">
           本アプリの「設定 → アカウントを削除」から、利用者自身がいつでもアカウントと関連データ（記録・綴り・画像・プロフィール）を削除できます。削除は即時に行われ、取り消しはできません。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           6. 第三者提供
         </h2>
         <p className="mt-2">
           法令に基づく場合を除き、利用者の同意なく個人情報を第三者に提供することはありません。前項の外部サービスは、本アプリの機能提供のために必要な範囲でデータを処理する委託先です。
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           7. お問い合わせ
         </h2>
         <p className="mt-2">
           本ポリシーおよび個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。
         </p>
         <p className="mt-1">
-          <a href="mailto:cinnamon416@gmail.com" className="text-[#4ea1ff] hover:opacity-80">
+          <a href="mailto:cinnamon416@gmail.com" className="text-blue-600 hover:opacity-80">
             cinnamon416@gmail.com
           </a>
         </p>
 
-        <h2 className="mt-8 border-b border-[rgba(128,128,128,0.3)] pb-[0.3em] text-[1.15rem] font-bold">
+        <h2 className="mt-8 border-b border-slate-200 pb-[0.3em] text-[1.15rem] font-bold text-slate-900">
           8. 改定
         </h2>
         <p className="mt-2">
           本ポリシーは、必要に応じて改定されることがあります。重要な変更がある場合は、本アプリまたは本ページ上でお知らせします。
         </p>
 
-        <footer className="mt-12 text-[0.85rem] text-[#888]">つづログ / Tsuzulog</footer>
+        <footer className="mt-12 text-[0.85rem] text-slate-500">つづログ / Tsuzulog</footer>
       </div>
     </main>
   );
