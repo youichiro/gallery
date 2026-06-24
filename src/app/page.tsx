@@ -27,12 +27,20 @@ export default function Home() {
           <h1 className="text-3xl font-bold tracking-wide">youichiro</h1>
           <p className="mt-2 text-xs font-light tracking-widest text-white/70 sm:text-sm">Software Engineer</p>
         </div>
-        <Link
-          href="/gallery"
-          className="rounded-full border border-white/70 bg-black/20 px-10 py-3 text-lg font-bold text-white backdrop-blur-sm transition hover:bg-black/40"
-        >
-          Gallery
-        </Link>
+        <div className="flex flex-col items-center gap-4">
+          <Link
+            href="/gallery"
+            className="w-48 rounded-full border border-white/70 bg-black/20 px-10 py-3 text-center text-lg font-bold text-white backdrop-blur-sm transition hover:bg-black/40"
+          >
+            Gallery
+          </Link>
+          <Link
+            href="/apps/tsuzulog"
+            className="w-48 rounded-full border border-white/70 bg-black/20 px-10 py-3 text-center text-lg font-bold text-white backdrop-blur-sm transition hover:bg-black/40"
+          >
+            つづログ
+          </Link>
+        </div>
       </div>
     </div>
   );
