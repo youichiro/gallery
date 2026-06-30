@@ -25,6 +25,12 @@ export default function TsuzulogPage() {
           プライバシーポリシー
         </Link>
         <Link
+          href="/apps/tsuzulog/terms"
+          className="rounded-full border border-slate-300 px-6 py-2 font-bold text-slate-700 transition hover:bg-slate-100"
+        >
+          利用規約
+        </Link>
+        <Link
           href="/"
           className="rounded-full border border-slate-300 px-6 py-2 font-bold text-slate-700 transition hover:bg-slate-100"
         >
